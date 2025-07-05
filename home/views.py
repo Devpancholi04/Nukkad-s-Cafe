@@ -22,7 +22,7 @@ def index(request):
         cache.set(menu_cache_key, menu_items, timeout=CACHE_TTL) 
 
     context = {
-        menu_items : menu_items[:8]
+        "menu_items" : menu_items[:8]
     }
-    
+
     return render(request, 'home/home.html', context)

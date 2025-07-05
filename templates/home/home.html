@@ -54,6 +54,39 @@ Nukkad Cafe | Home Page
     </div>
 </section>
 
+<!-- menu section -->
+<section id="menu" class="d-flex align-items-center justify-content-center text-black section-full">
+    <div class="container">
+
+        <h2 class="menu-title mb-3 text-center" data-aos="zoom-in">Explore Our Menu</h2>
+        <p class="menu-desc mb-5 text-center" data-aos="zoom-in">We serve delicious food made with love and
+            fresh ingredients.
+        </p>
+
+        <div class="row g-4 mb-5">
+            {% for item in menu_items %}
+                <div class="col-6 col-md-3" data-aos="fade-up">
+                    <div class="card menu-card h-100">
+                        <img src="{{ item.images }}" class="card-img-top" alt="{{ item.name }}">
+                        <div class="card-body">
+                            <div class="menu-name-price">
+                                <span>{{ item.name }}</span>
+                                <span>₹{{ item.price }}</span>
+                            </div>
+                            <p class="menu-short-desc">{{ item.description }}</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        <a href="" class="d-flex align-items-center justify-content-center mb-2 more-link"
+                    data-aos="fade-up">Load More</a>
+                    
+    </div>
+</section>
+        
+
 {% endblock body %}
 
 {% block external_js %}
