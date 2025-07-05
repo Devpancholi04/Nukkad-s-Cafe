@@ -1,9 +1,9 @@
-document.addEventListener('DOMContentLoaded', function () {
-    const navbar = document.getElementById('mainNavbar');
-    const hero = document.querySelector('.hero');
+document.addEventListener("DOMContentLoaded", function () {
+  // Navbar scroll effect
+  const navbar = document.getElementById('mainNavbar');
+  const hero = document.querySelector('.hero');
 
-    if (!hero || !navbar) return;
-
+  if (hero && navbar) {
     window.addEventListener('scroll', () => {
       const heroHeight = hero.offsetHeight;
 
@@ -13,4 +13,22 @@ document.addEventListener('DOMContentLoaded', function () {
         navbar.classList.remove('navbar-scrolled');
       }
     });
+  }
+
+  // Star rating rendering
+  const ratingdivs = document.querySelectorAll(".rating");
+
+  ratingdivs.forEach(ratingdiv => {
+    const ratingvalue = parseFloat(ratingdiv.getAttribute("data-rating"));
+    const stars = ratingdiv.querySelectorAll('i');
+
+    for (let i = 0; i < Math.floor(ratingvalue); i++) {
+      stars[i].classList.add("fa-solid", "fa-star");
+    }
+
+    if (ratingvalue % 1 >= 0.5 && stars[Math.floor(ratingvalue)]) {
+      stars[Math.floor(ratingvalue)].classList.remove("fa-regular", "fa-star");
+      stars[Math.floor(ratingvalue)].classList.add("fa-solid", "fa-star-half-stroke");
+    }
   });
+});

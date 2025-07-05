@@ -65,27 +65,210 @@ Nukkad Cafe | Home Page
 
         <div class="row g-4 mb-5">
             {% for item in menu_items %}
-                <div class="col-6 col-md-3" data-aos="fade-up">
-                    <div class="card menu-card h-100">
-                        <img src="{{ item.images }}" class="card-img-top" alt="{{ item.name }}">
-                        <div class="card-body">
-                            <div class="menu-name-price">
-                                <span>{{ item.name }}</span>
-                                <span>₹{{ item.price }}</span>
-                            </div>
-                            <p class="menu-short-desc">{{ item.description }}</p>
+            <div class="col-6 col-md-3" data-aos="fade-up">
+                <div class="card menu-card h-100">
+                    <img src="{{ item.images }}" class="card-img-top" alt="{{ item.name }}">
+                    <div class="card-body">
+                        <div class="menu-name-price">
+                            <span>{{ item.name }}</span>
+                            <span>₹{{ item.price }}</span>
                         </div>
+                        <p class="menu-short-desc">{{ item.description }}</p>
                     </div>
                 </div>
+            </div>
             {% endfor %}
         </div>
 
-        <a href="" class="d-flex align-items-center justify-content-center mb-2 more-link"
-                    data-aos="fade-up">Load More</a>
-                    
+        <a href="" class="d-flex align-items-center justify-content-center mb-2 more-link" data-aos="fade-up">Load
+            More</a>
+
     </div>
 </section>
-        
+
+<!-- order now section -->
+<section id="orderNow" class="d-flex align-items-center justify-content-center text-black mt-4">
+    <div class="banner position-relative d-flex align-items-center justify-content-center text-center"
+        data-aos="fade-up">
+        <!-- Order Now Button -->
+        <a href="" class="btn btn-warning btn-lg shadow-lg order-now-btn">
+            🍽️ Order Now
+        </a>
+    </div>
+</section>
+
+<!-- testmonials section -->
+<section id="testmonials" class="d-flex align-items-center justify-content-center text-black mt-5">
+    <div class="container" data-aos="fade-up">
+
+        <h2 class="title mb-3 text-center">What our Customer's Says</h2>
+        <div class="underline mx-auto mt-2 mb-3"></div>
+
+        <div class="container mb-5">
+
+            <div id="testimonailcarousel" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                    {% for test in testimonials %}
+                    <button type="button" data-bs-target="#testimonailcarousel" data-bs-slide-to="{{forloop.counter0}}"
+                        class="{% if forloop.first %} active {% endif %}"
+                        aria-current="{% if forloop.first %} true {% endif %}"
+                        aria-label="Slide {{ forloop.counter }}"></button>
+                    {% endfor %}
+                </div>
+
+                <div class="carousel-inner">
+                    {% for test in testimonials %}
+                    <div class="carousel-item {% if forloop.first %} active {% endif %}">
+                        <div class="test-card card p-3 shadow-lg">
+                            <div class="test-details d-flex align-items-center ">
+                                <div class="user-img py-2">
+                                    <img src="{% if test.image %} {{ test.image }} {% else %} /media/images/home/user/user_logo.png {% endif %}"
+                                        alt="user-img">
+                                </div>
+                                <div class="description">
+                                    <div class="user-details d-flex">
+                                        <p class="user-name">{{ test.username }}</p>
+                                        <p class="user-pos"> - user </p>
+
+
+                                        <div class="rating d-flex" data-rating="{{ test.rating }}">
+                                            <i class="fa-regular fa-star"></i>
+                                            <i class="fa-regular fa-star"></i>
+                                            <i class="fa-regular fa-star"></i>
+                                            <i class="fa-regular fa-star"></i>
+                                            <i class="fa-regular fa-star"></i>
+
+                                            <div class="mx-2">
+                                                {{ test.rating }}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="review-desc">
+                                        <p class="review-title">{{ test.title }}</p>
+                                        <p class="review-description lead">{{ test.message }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- services section -->
+<section id="services" class="our-services-details py-5">
+    <div class="container" data-aos="fade-up">
+
+        <!-- Section Heading -->
+        <h2 class="text-center fw-bold mb-3">Why Choose Us</h2>
+        <div class="underline mx-auto mb-5"></div>
+
+        <div class="our-services-item d-flex flex-wrap justify-content-between gap-3 text-center text-md-start">
+
+            <div class="service-card">
+                <i class="fa-solid fa-utensils fa-2x mb-3"></i>
+                <p class="heading">Fresh & Delicious Food</p>
+                <p class="details">We serve freshly prepared meals using premium ingredients to ensure
+                    mouth-watering taste every time.</p>
+            </div>
+
+            <div class="service-card">
+                <i class="fa-solid fa-clock fa-2x mb-3"></i>
+                <p class="heading">Quick Service</p>
+                <p class="details">Enjoy prompt table service and minimal wait times so you can focus on what
+                    matters—great food & conversation.</p>
+            </div>
+
+            <div class="service-card">
+                <i class="fa-solid fa-hand-holding-heart fa-2x mb-3"></i>
+                <p class="heading">Warm Hospitality</p>
+                <p class="details">Our staff is trained to provide a warm, welcoming experience for you and your
+                    family or friends.</p>
+            </div>
+
+            <div class="service-card">
+                <i class="fa-solid fa-thumbs-up fa-2x mb-3"></i>
+                <p class="heading">Affordable Pricing</p>
+                <p class="details">Relish gourmet dining without burning a hole in your wallet—flavorful food at
+                    fair prices.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- contact info -->
+<section id="contact" class="py-5">
+    <div class="container">
+        <div class="text-center mb-2" data-aos="fade-down">
+            <h1 class="mb-5">Contact Us</h1>
+        </div>
+
+        <div class="row mb-1">
+            <!-- Contact Info -->
+            <div class="col-md-6" data-aos="fade-right">
+                <h3 class="mb-4">Contact Information</h3>
+                <p><i class="fas fa-map-marker-alt me-2 text-warning"></i>123 Main Street, Mandsaur, MP, India
+                </p>
+                <p>
+                    <i class="fas fa-phone me-2 text-warning"></i>
+                    <a href="tel:+918120098465" class="contact-link">+91 81200 98465</a>
+                </p>
+                <p>
+                    <i class="fas fa-envelope me-2 text-warning"></i>
+                    <a href="mailto:devpancholigt2004@gmail.com" class="contact-link">devpancholigt2004@gmail.com</a>
+                </p>
+
+                <div class="map-responsive mt-4">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d29142.394917554673!2d75.02468744433794!3d24.073368964530726!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39642ea9db15e09f%3A0x89a3e5ea4399695b!2sMandsaur%2C%20Madhya%20Pradesh!5e0!3m2!1sen!2sin!4v1751458394366!5m2!1sen!2sin"
+                        width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+                </div>
+            </div>
+
+            <!-- Opening Hours -->
+            <div class="col-md-6" data-aos="fade-left">
+                <h3 class="open-head mb-4">Opening Hours</h3>
+                <div class="opening-hours">
+                    <div class="opening-day">
+                        <h5><i class="fas fa-calendar-day me-2 text-warning"></i>Monday</h5>
+                        <span>10:00 AM - 10:00 PM</span>
+                    </div>
+                    <div class="opening-day">
+                        <h5><i class="fas fa-calendar-day me-2 text-warning"></i>Tuesday</h5>
+                        <span>10:00 AM - 10:00 PM</span>
+                    </div>
+                    <div class="opening-day">
+                        <h5><i class="fas fa-calendar-day me-2 text-warning"></i>Wednesday</h5>
+                        <span>10:00 AM - 10:00 PM</span>
+                    </div>
+                    <div class="opening-day">
+                        <h5><i class="fas fa-calendar-day me-2 text-warning"></i>Thursday</h5>
+                        <span>10:00 AM - 10:00 PM</span>
+                    </div>
+                    <div class="opening-day">
+                        <h5><i class="fas fa-calendar-day me-2 text-warning"></i>Friday</h5>
+                        <span>10:00 AM - 11:00 PM</span>
+                    </div>
+                    <div class="opening-day">
+                        <h5><i class="fas fa-calendar-day me-2 text-warning"></i>Saturday</h5>
+                        <span>10:00 AM - 11:00 PM</span>
+                    </div>
+                    <div class="opening-day">
+                        <h5><i class="fas fa-calendar-day me-2 text-warning"></i>Sunday</h5>
+                        <span>9:00 AM - 10:00 PM</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
 {% endblock body %}
 

@@ -1,6 +1,6 @@
 from django.shortcuts import render
-from .models import MenuItem
-from .serializers import MenuItemSerializer
+from .models import MenuItem, Testimonials
+from .serializers import MenuItemSerializer, TestimonialsSerializer
 
 from django.core.cache import cache
 from django.conf import settings
@@ -21,8 +21,19 @@ def index(request):
         menu_items = serializers.data
         cache.set(menu_cache_key, menu_items, timeout=CACHE_TTL) 
 
+    testimonials_cache_key = "TESTIMONIALS-CACHE-KEY"
+    testimonials = cache.get(testimonials_cache_key)
+
+    if not testimonials:
+        test_queryset = Testimonials.objects.filter(is_active = True)
+        test_serializers = TestimonialsSerializer(test_queryset, many = True)
+        testimonials = test_serializers.data
+        cache.set(testimonials_cache_key, testimonials, timeout=CACHE_TTL)
+
+
     context = {
-        "menu_items" : menu_items[:8]
+        "menu_items" : menu_items[:8],
+        "testimonials" : testimonials,
     }
 
     return render(request, 'home/home.html', context)
