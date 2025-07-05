@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'rest_framework',
     'home'
 ]
 
@@ -154,11 +155,21 @@ CACHE_TTL = 30 * 24 * 60 * 60
 CACHES = {
     "default" : {
         "BACKEND" : "django_redis.cache.RedisCache",
-        "LOCATION" : "redis://127.0.0.1:6379/1",
+        "LOCATION" : "redis://127.0.0.1:6379/3",
         "OPTIONS" : {
             "CLIENT_CLASS" : "django_redis.client.DefaultClient",
         },
         "KEY_PREFIX" : 'restaurant',
         "TIMEOUT" : CACHE_TTL,
     }
+}
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
 }
