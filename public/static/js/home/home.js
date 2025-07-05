@@ -1,20 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-  // Navbar scroll effect
-  const navbar = document.getElementById('mainNavbar');
-  const hero = document.querySelector('.hero');
-
-  if (hero && navbar) {
-    window.addEventListener('scroll', () => {
-      const heroHeight = hero.offsetHeight;
-
-      if (window.scrollY > heroHeight - 100) {
-        navbar.classList.add('navbar-scrolled');
-      } else {
-        navbar.classList.remove('navbar-scrolled');
-      }
-    });
-  }
-
+  
   // Star rating rendering
   const ratingdivs = document.querySelectorAll(".rating");
 

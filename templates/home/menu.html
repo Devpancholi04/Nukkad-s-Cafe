@@ -1,0 +1,109 @@
+{% extends 'base/main_navbar.html' %}
+
+{% block title %}
+Nukkad Cafe | Home Page
+{% endblock title %}
+
+{% block external_css %}
+<link rel="stylesheet" href="/media/css/home/menu.css">
+{% endblock external_css %}
+
+{% block body %}
+
+<main>
+    <section class="menu">
+        <div class="container">
+            <div class="menu-header">
+                <h1 class="menu-title mb-3 text-center" data-aos="zoom-in">Explore Our Menu</h1>
+                <p class="menu-desc mb-5 text-center" data-aos="zoom-in">We serve delicious food made with love and
+                    fresh ingredients.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- <section id="menu" class="d-flex align-items-center justify-content-center text-black section-full mt-4">
+        <div class="container">
+            <div class="product-header">
+                <h1 class="menu-title mb-1 text-center" data-aos="zoom-in">All Food Items</h1>
+                <div class="underline mx-auto mt-1 mb-4"></div>
+            </div>
+
+            <div class="row g-4 mb-5">
+                Menu Card Start
+                <div class="col-6 col-md-3" data-aos="fade-up">
+                    <div class="card menu-card h-100">
+                        <img src="/image/food/kadai-paneer.png" class="card-img-top" alt="Food Image">
+                        <div class="card-body">
+                            <div class="menu-name-price">
+                                <span>Kadai Paneer</span>
+                                <span>₹260</span>
+                            </div>
+                            <p class="menu-categories text-warning fw-bold">Panner</p>
+                            <p class="menu-short-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                Quis, aut! Laborum quasi adipisci quod quibusdam suscipit rem, ea expedita sunt.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+    <section class="categories" data-aos="zoom-in">
+        <div class="container">
+            <div class="header-categories">
+
+                <div class="d-flex gap-1">
+                    <select name="categories" id="categories" class="form-control select-cat">
+                        <option value="Select the categories">search by Categories</option>
+                        {% if categories %}
+                        {% for ctg in categories %}
+                        <option value="{{ ctg.name }}">{{ ctg.name }}</option>
+                        {% endfor %}
+                        {% endif %}
+                    </select>
+                    <input type="search" name="search" placeholder="search here" class="form-control" class="search">
+                    <button class="btn btn-warning">Search</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="menu" class="d-flex align-items-center justify-content-center text-black section-full mt-4">
+        <div class="container">
+            <div class="product-header" data-aos="zoom-in">
+                <h1 class="menu-title mb-1 text-center" >All Food Items</h1>
+                <!-- <div class="underline mx-auto mt-1 mb-4"></div> -->
+            </div>
+
+            {% for ctg in categories %}
+            <div class="category-section mb-5" data-category="{{ ctg.name }}">
+                <h4 class="mb-1 text-center" data-aos="fade-up">{{ ctg.name }}</h4>
+                <div class="underline mx-auto mt-1 mb-4" data-aos="fade-up"></div>
+
+                <div class="row g-2 g-md-3 g-lg-4 mb-2 mb-md-3 mb-lg-5">
+                    {% for item in menu_items %}
+                        {% if item.category == ctg.category_id %}
+                            <div class="col-6 col-md-3" data-aos="fade-up">
+                                <div class="card menu-card h-100">
+                                    <img src="{{ item.images }}" class="card-img-top" alt="{{ item.name }}">
+                                    <div class="card-body">
+                                        <div class="menu-name-price">
+                                            <span>{{ item.name }}</span>
+                                            <span>₹{{ item.price }}</span>
+                                        </div>
+                                        <p class="menu-categories text-warning fw-bold">{{ ctg.name }}</p>
+                                        <p class="menu-short-desc">{{ item.description }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                    {%endfor%}
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+    </section>
+
+</main>
+{% endblock %}

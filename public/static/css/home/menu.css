@@ -1,0 +1,90 @@
+/* menu header */
+
+.menu-header {
+    text-align: center;
+    padding: 80px 0 20px;
+}
+
+.menu-header h1 {
+    font-weight: bold;
+    font-size: 3rem;
+    color: #2c3e50;
+}
+
+.underline {
+    width: 80px;
+    height: 4px;
+    background-color: #ff9900;
+    border-radius: 2px;
+}
+
+
+/* categories and search section */
+.categories{
+    margin-top: -40px;
+}
+
+.categories .header-categories .select-cat {
+    width: 20%;
+}
+
+.categories .header-categories .btn {
+    width: 20%;
+}
+
+@media (max-width: 991px) {
+
+    .categories .header-categories .select-cat {
+        width: 50%;
+    }
+
+    .categories .header-categories .btn {
+        width: 50%;
+    }
+}
+
+
+/* menu card items */
+
+.menu-card img {
+    height: 275px;
+    object-fit: cover;
+}
+
+.menu-name-price {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 700;
+    margin-top: 10px;
+    font-size: larger;
+}
+
+.menu-short-desc {
+    color: #777;
+    font-size: 0.95rem;
+    margin-top: -14px;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+@media (max-width: 768px){
+    .menu .menu-header .menu-title{
+        font-size: 40px;
+    }
+
+
+    #menu .row .menu-card img{
+        height: 150px;
+    }
+
+    #menu .row .menu-card .menu-name-price{
+        font-size: 1rem;
+    }
+
+}

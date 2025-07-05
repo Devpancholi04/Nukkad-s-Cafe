@@ -1,6 +1,6 @@
 from django.shortcuts import render
-from .models import MenuItem, Testimonials
-from .serializers import MenuItemSerializer, TestimonialsSerializer
+from .models import MenuItem, Testimonials, Category
+from .serializers import MenuItemSerializer, TestimonialsSerializer, CategorySerializer
 
 from django.core.cache import cache
 from django.conf import settings
@@ -37,3 +37,32 @@ def index(request):
     }
 
     return render(request, 'home/home.html', context)
+
+def menu(request):
+
+    category_cache_key = "CATEGORY-CACHE-KEY"
+    category = cache.get(category_cache_key)
+
+    if not category:
+        category_queryset = Category.objects.all()
+        category_serializers = CategorySerializer(category_queryset, many = True)
+        category = category_serializers.data
+        cache.set(category_cache_key, category, timeout=CACHE_TTL)
+
+
+    menu_cache_key = "MENU-ITEM-CACHE"
+    menu_items = cache.get(menu_cache_key)
+
+    if not menu_items:
+        queryset = MenuItem.objects.filter(is_available = True)
+        serializers = MenuItemSerializer(queryset, many=True)
+        menu_items = serializers.data
+        cache.set(menu_cache_key, menu_items, timeout=CACHE_TTL) 
+
+
+    context = {
+        "categories" : category,
+        "menu_items" : menu_items,
+    }
+
+    return render(request, "home/menu.html", context)
