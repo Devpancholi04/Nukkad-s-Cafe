@@ -1,0 +1,61 @@
+{% extends 'base/main_navbar.html' %}
+
+{% block title %}
+Nukkad Cafe | Home Page
+{% endblock title %}
+
+{% block external_css %}
+<link rel="stylesheet" href="/media/css/home/home.css">
+{% endblock external_css %}
+
+{% block body %}
+
+<!-- hero section -->
+<section class="hero d-flex align-items-center justify-content-center text-white">
+    <div class="container">
+        <div class="text-center">
+            <h1>Welcome to Our Nukkad's Cafe</h1>
+            <p class="fs-3">Experience the best taste in town</p>
+        </div>
+    </div>
+</section>
+
+<!-- about section -->
+<section id="about" class="d-flex align-items-center justify-content-center text-black section-full">
+    <div class="container">
+
+        <div class="row align-items-center">
+            <div class="col-md-6 mb-4 mb-md-0">
+                <div class="image-section position-relative d-flex justify-content-center" data-aos="zoom-in">
+                    <div class="card back-card"></div>
+                    <div class="main-image position-absolute">
+                        <img src="/media/images/home/interior.png" alt="interior" class="profile img-fluid">
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6" data-aos="fade-left">
+                <h2 class="name mb-4">Welcome to Nukkad Cafe</h2>
+                <p class="lead mb-4 text-secondary-emphasis">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia aliquid nesciunt, illum
+                    quibusdam laboriosam amet doloribus fugit enim, dolorum aspernatur ipsum! Qui voluptate odit
+                    sapiente non, dicta suscipit dignissimos nostrum ipsum esse modi provident? Eum.
+                </p>
+
+                <div class="active-btn">
+                    <a href="" class="btn btn-outline-primary btn-lg px-4 text-center connect-btn">Book a
+                        Table</a>
+                    <a href="" class="btn btn-outline-success btn-lg px-4 text-center connect-btn">Get Packed
+                        Food</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock body %}
+
+{% block external_js %}
+<script src="/media/js/home/home.js"></script>
+{% endblock external_js %}
