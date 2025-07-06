@@ -15,3 +15,11 @@ class generate_ids:
     def gen_menu_item_id(self):
         item = f"Item-{"".join(random.choice(string.digits) for _ in range(6))}"
         return slugify(item)
+    
+    def gen_cart_id(self):
+        cart = f"Cart-{"".join(random.choice(string.digits) for _ in range(8))}"
+        return slugify(cart)
+    
+    def gen_order_id(self):
+        order = f"ORDER-{"".join(random.choice(string.digits) for _ in range(10))}"
+        return slugify(order)
