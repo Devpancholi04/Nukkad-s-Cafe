@@ -1,0 +1,22 @@
+.cart-icon{
+    font-size: x-large;
+}
+
+#count{
+    position: relative;
+    top: -20px;
+    right: 15px;
+    font-weight: bold;
+}
+
+#get-bill-modal .pay .upi,
+#get-bill-modal .pay .cash{
+    width: 48%;
+}
+
+@media (max-width:991px) {
+
+    .bill-btn{
+        width: 50% !important;
+    }
+}

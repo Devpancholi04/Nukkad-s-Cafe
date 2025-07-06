@@ -1,0 +1,239 @@
+{% extends 'base/main_navbar.html' %}
+
+{% block title %}
+Nukkad Cafe | Home Page
+{% endblock title %}
+
+{% block external_css %}
+<link rel="stylesheet" href="/media/css/home/menu.css">
+<link rel="stylesheet" href="/media/css/home/orders.css">
+{% endblock external_css %}
+
+{% block body %}
+
+<main>
+    <section class="menu">
+        <div class="container">
+            <div class="menu-header">
+                <h1 class="menu-title mb-3 text-center" data-aos="zoom-in">Explore Our Menu</h1>
+                <p class="menu-desc mb-5 text-center" data-aos="zoom-in">We serve delicious food made with love and
+                    fresh ingredients.
+                </p>
+                <p class="text-center mb-4 text-muted" data-aos="zoom-in">Table: #{{ tableid }}</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="categories" data-aos="zoom-in">
+        <div class="container">
+            <div class="header-categories">
+
+                <div class="d-flex gap-1">
+                    <select name="categories" id="categories" class="form-control select-cat">
+                        <option value="Select the categories">search by Categories</option>
+                        {% if categories %}
+                        {% for ctg in categories %}
+                        <option value="{{ ctg.name }}">{{ ctg.name }}</option>
+                        {% endfor %}
+                        {% endif %}
+                    </select>
+                    <input type="search" name="search" placeholder="search here" class="form-control" class="search">
+                    <button class="btn btn-warning">Search</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="order-status" data-aos="zoom-in">
+        <div class="container">
+            <div class="mt-3 d-flex align-items-center justify-content-center gap-2">
+
+                <!-- <a href="" class="btn btn-secondary w-25 fw-bold place-btn disabled">Update Order</a> -->
+                <a href="" class="btn btn-success w-25 fw-bold bill-btn" data-bs-toggle="modal"
+                    data-bs-target="#get-bill-modal">Get Bills</a>
+
+                <a href="" class="text-decoration-none text-black mx-3" data-bs-toggle="modal"
+                    data-bs-target="#cart-modal">
+                    <i class="fa-solid fa-cart-shopping cart-icon"></i>
+                    <span class="badge bg-danger" id="count">0</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="menu" class="d-flex align-items-center justify-content-center text-black section-full mt-4">
+        <div class="container">
+            <div class="product-header" data-aos="zoom-in">
+                <h1 class="menu-title mb-1 text-center">All Food Items</h1>
+                <!-- <div class="underline mx-auto mt-1 mb-4"></div> -->
+            </div>
+
+            {% for ctg in categories %}
+            <div class="category-section mb-5" data-category="{{ ctg.name }}">
+                <h4 class="mb-1 text-center" data-aos="fade-up">{{ ctg.name }}</h4>
+                <div class="underline mx-auto mt-1 mb-4" data-aos="fade-up"></div>
+
+                <div class="row g-2 g-md-3 g-lg-4 mb-2 mb-md-3 mb-lg-5">
+                    {% for item in menu_items %}
+                    {% if item.category == ctg.category_id %}
+                    <div class="col-6 col-md-3" data-aos="fade-up">
+                        <div class="card menu-card h-100">
+                            <img src="{{ item.images }}" class="card-img-top" alt="{{ item.name }}">
+                            <div class="card-body">
+                                <div class="menu-name-price">
+                                    <span>{{ item.name }}</span>
+                                    <span>₹{{ item.price }}</span>
+                                </div>
+                                <p class="menu-categories text-warning fw-bold">{{ ctg.name }}</p>
+                                <p class="menu-short-desc">{{ item.description }}</p>
+
+                                <div class="mt-auto cart text-center">
+                                    <a href="" class="btn btn-outline-success">
+                                        <i class="fa-solid fa-cart-plus"></i>
+                                        Add to Cart
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {%endfor%}
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+    </section>
+
+    <div class="modal fade" id="cart-modal" tabindex="-1" aria-labelledby="CartModelLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content shadow-lg rounded-4">
+                <div class="modal-header bg-dark text-white">
+                    <h1 class="modal-title fs-5" id="CartModelLabel">🛒 Nukkad's Cafe</h1>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body px-4 py-3">
+                    <h4 class="text-center mb-3">🧾 Order Summary</h4>
+
+                    <div class="table-responsive mb-4">
+                        <table class="table table-bordered table-striped table-hover align-middle">
+                            <thead class="table-dark text-center">
+                                <tr>
+                                    <th>#</th>
+                                    <th>Name</th>
+                                    <th>Quantity</th>
+                                    <th>Price</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Kadai Paneer</td>
+                                    <td>1 full</td>
+                                    <td>₹260</td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Veg Cheese Burger</td>
+                                    <td>1</td>
+                                    <td>₹80</td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="3" class="text-center fw-bold">Total</td>
+                                    <td class="fw-bold">₹340</td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="modal-footer justify-content-center">
+                    <button type="button" class="btn btn-success fw-bold px-4" id="placeOrderBtn">Place
+                        Order</button>
+                    <button type="button" class="btn btn-secondary fw-bold px-4" data-bs-dismiss="modal">Back</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="modal fade" id="get-bill-modal" tabindex="-1" aria-labelledby="getBillModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content shadow-lg rounded-4">
+                <div class="modal-header bg-dark text-white">
+                    <h1 class="modal-title fs-5" id="getBillModalLabel">🍽️ Nukkad's Cafe</h1>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body px-4 py-3">
+                    <form id="paymentForm">
+                        <label for="mobileNumber" class="form-label fw-semibold">📱 Mobile Number</label>
+                        <input type="tel" id="mobileNumber" class="form-control mb-3" placeholder="Enter mobile number"
+                            required>
+                    </form>
+
+                    <hr class="my-4">
+
+                    <h4 class="text-center mb-3">🧾 Order Summary</h4>
+                    <div class="table-responsive mb-4">
+                        <table class="table table-bordered table-striped table-hover align-middle">
+                            <thead class="table-dark text-center">
+                                <tr>
+                                    <th>#</th>
+                                    <th>Name</th>
+                                    <th>Quantity</th>
+                                    <th>Price</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Kadai Paneer</td>
+                                    <td>1 full</td>
+                                    <td>₹260</td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Veg Cheese Burger</td>
+                                    <td>1</td>
+                                    <td>₹80</td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="3" class="text-center fw-bold">Total</td>
+                                    <td class="fw-bold">₹340</td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+
+                    <h5 class="text-center">💳 Choose & Make Payment</h5>
+                    <hr>
+                    <div class="d-flex justify-content-center gap-3">
+                        <button type="button" class="btn btn-outline-success fw-bold upi">Pay with UPI</button>
+                        <button type="button" class="btn btn-outline-secondary fw-bold cash">Pay with Cash</button>
+                    </div>
+                </div>
+
+                <div class="modal-footer justify-content-center">
+                    <button type="button" class="btn btn-danger fw-bold px-4" data-bs-dismiss="modal">Back</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</main>
+{% endblock %}
+
+{% block external_js %}
+<script src="/media/js/home/search.js"></script>
+{% endblock %}
