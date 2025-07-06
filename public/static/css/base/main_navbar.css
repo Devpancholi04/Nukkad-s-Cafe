@@ -117,3 +117,9 @@ html {
 footer i {
   font-size: 1.1rem;
 }
+
+@media (max-width:768px) {
+    .align-center-footer{
+        text-align: center;
+    }
+}

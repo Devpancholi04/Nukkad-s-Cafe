@@ -7,7 +7,7 @@ Nukkad Cafe | Home Page
 {% block external_css %}
 <link rel="stylesheet" href="/media/css/home/home.css">
 {% endblock external_css %}
-
+ 
 {% block body %}
 
 <!-- hero section -->
@@ -42,7 +42,7 @@ Nukkad Cafe | Home Page
                     sapiente non, dicta suscipit dignissimos nostrum ipsum esse modi provident? Eum.
                 </p>
 
-                <div class="active-btn">
+                <div class="active-btn d-flex flex-column flex-md-row justify-content-center gap-3">
                     <a href="" class="btn btn-outline-primary btn-lg px-4 text-center connect-btn">Book a
                         Table</a>
                     <a href="" class="btn btn-outline-success btn-lg px-4 text-center connect-btn">Get Packed
@@ -63,7 +63,7 @@ Nukkad Cafe | Home Page
             fresh ingredients.
         </p>
 
-        <div class="row g-4 mb-5">
+        <div class="row g-2 g-md-3 g-lg-4 mb-2 mb-md-3 mb-lg-5">
             {% for item in menu_items %}
             <div class="col-6 col-md-3" data-aos="fade-up">
                 <div class="card menu-card h-100">
@@ -126,21 +126,18 @@ Nukkad Cafe | Home Page
                                         alt="user-img">
                                 </div>
                                 <div class="description">
-                                    <div class="user-details d-flex">
+                                    <div class="user-details d-flex text-center">
                                         <p class="user-name">{{ test.username }}</p>
-                                        <p class="user-pos"> - user </p>
+                                        <p class="user-pos">&nbsp; - user </p>
 
 
-                                        <div class="rating d-flex" data-rating="{{ test.rating }}">
+                                        <div class="rating d-flex align-items-center" data-rating="{{ test.rating }}">
                                             <i class="fa-regular fa-star"></i>
                                             <i class="fa-regular fa-star"></i>
                                             <i class="fa-regular fa-star"></i>
                                             <i class="fa-regular fa-star"></i>
                                             <i class="fa-regular fa-star"></i>
 
-                                            <div class="mx-2">
-                                                {{ test.rating }}
-                                            </div>
                                         </div>
                                     </div>
 

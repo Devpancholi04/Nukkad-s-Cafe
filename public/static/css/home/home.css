@@ -13,7 +13,7 @@
 /* about section start */
 #about {
     height: 100vh;
-}
+} 
 
 .image-section .back-card {
     width: 500px;
@@ -34,12 +34,7 @@
     text-align: justify;
 }
 
-
 /* menu section */
-.menu-section {
-    padding: 60px 0;
-    background-color: #f8f9fa;
-}
 
 .menu-title {
     font-size: 2.5rem;
@@ -68,6 +63,11 @@
 .menu-short-desc {
     color: #777;
     font-size: 0.95rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .more-link {
@@ -81,6 +81,7 @@
     text-decoration: underline;
     color: blue;
 }
+
 
 /* orderNow section */
 .banner {
@@ -372,4 +373,77 @@
     .open-head{
         margin-top: 35px;
     }
+}
+
+@media (max-width: 768px){
+    .hero{
+        height: 95vh;
+    }
+
+    .hero h1{
+        font-size: 1.47rem;
+    }
+
+    .hero p{
+        font-size: 1.2rem !important;
+    }
+
+    #about{
+        height: 115vh;
+    }
+
+    .image-section .back-card{
+        width: 300px;
+        height: 300px;
+    }
+
+    .image-section .main-image .profile{
+        width: 300px;
+        height: 300px;
+    }
+
+    .menu-name-price{
+        font-size: 1rem;
+    }
+
+    .test-card {
+        padding: 1rem !important;
+    }
+
+    .test-details {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .user-img {
+        padding: 0 !important;
+        margin-bottom: 10px;
+    }
+
+    .user-name, .user-pos {
+        font-size: 1rem;
+    }
+    .user-name, .user-pos, .rating {
+        margin-left: 0 !important;
+    }
+
+    .test-details .user-details .rating {
+        margin-top: -10px;
+        padding-left: 8px;
+    }
+
+    .review-desc {
+        margin-top: 10px;
+    }
+
+    .test-details .review-desc .review-title {
+        font-size: 1.1rem;
+        font-weight: 600;
+    }
+
+    .review-description {
+        font-size: 0.95rem;
+        text-align: justify;
+    }
+
 }
